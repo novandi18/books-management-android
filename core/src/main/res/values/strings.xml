@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="image">Gambar</string>
+    <string name="favorite">Favorit</string>
+    <string name="search_hint">Cari buku</string>
+    <string name="delete_search_history">Hapus Histori Pencarian</string>
+</resources>

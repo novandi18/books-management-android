@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Books</string>
+    <string name="title">Judul Buku</string>
+    <string name="title_hint">Masukkan judul buku</string>
+    <string name="upload_image">Upload Gambar</string>
+    <string name="author">Penulis</string>
+    <string name="author_hint">Masukkan Penulis Buku</string>
+    <string name="submit">Tambahkan</string>
+    <string name="add_book">Tambah Buku</string>
+    <string name="empty_text">Tidak ada buku</string>
+    <string name="empty_favorite">Tidak ada buku favorit</string>
+    <string name="image">Gambar</string>
+    <string name="other_books">Buku Lainnya</string>
+    <string name="delete_book">Hapus Buku</string>
+    <string name="delete_search_history">Hapus Histori Pencarian</string>
+    <string name="delete_book_confirm">Yakin untuk menghapus buku %1$s dari %2$s?</string>
+    <string name="delete_book_completed">Buku berhasil dihapus</string>
+    <string name="yes">Iya hapus</string>
+    <string name="cancel">Batal</string>
+    <string name="search_hint">Cari buku</string>
+    <string name="favorite">Favorit</string>
+</resources>
