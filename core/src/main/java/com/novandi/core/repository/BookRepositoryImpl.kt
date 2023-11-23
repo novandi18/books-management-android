@@ -62,4 +62,6 @@ class BookRepositoryImpl @Inject constructor(
 
     override suspend fun updateBookFavorite(isFavorite: Boolean, id: Int) =
         bookDao.updateBookFavorite(isFavorite, id)
+
+    override suspend fun updateBook(book: BookEntity) = bookDao.updateBook(book)
 }

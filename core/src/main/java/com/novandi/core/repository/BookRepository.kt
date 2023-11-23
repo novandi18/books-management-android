@@ -17,4 +17,5 @@ interface BookRepository {
     fun getSearchQuery(query: String): LiveData<List<BookEntity>>
     fun getFavoriteBooks(): LiveData<List<BookEntity>>
     suspend fun updateBookFavorite(isFavorite: Boolean, id: Int)
+    suspend fun updateBook(book: BookEntity)
 }

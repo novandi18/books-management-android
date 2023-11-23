@@ -19,4 +19,10 @@
     <string name="cancel">Batal</string>
     <string name="search_hint">Cari buku</string>
     <string name="favorite">Favorit</string>
+    <string name="edit_book">Edit Buku</string>
+    <string name="edit_book_completed">Buku berhasil diubah</string>
+    <string name="change_book_image">Ganti gambar</string>
+    <string name="reset_book_image">Reset gambar</string>
+    <string name="field_empty_warning">Masukkan nama dan author dulu</string>
+    <string name="image_empty_warning">Pilih gambar dulu</string>
 </resources>

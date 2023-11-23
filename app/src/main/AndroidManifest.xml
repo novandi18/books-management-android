@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Books"
         tools:targetApi="31">
         <activity
+            android:name=".ui.edit.EditActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.favorite.FavoriteActivity"
             android:exported="false" />
         <activity
@@ -29,11 +32,10 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Trigger Google Play services to install the backported photo picker module. -->
+        </activity> <!-- Trigger Google Play services to install the backported photo picker module. -->
         <!-- suppress AndroidDomInspection -->
         <service
             android:name="com.google.android.gms.metadata.ModuleDependencies"

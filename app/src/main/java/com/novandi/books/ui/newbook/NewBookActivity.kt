@@ -9,7 +9,11 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.novandi.books.R
 import com.novandi.books.databinding.ActivityNewBookBinding
+import com.novandi.core.room.BookEntity
+import com.novandi.core.state.UiState
+import com.novandi.core.utils.uriToFile
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
@@ -46,7 +50,7 @@ class NewBookActivity : AppCompatActivity() {
         val author = binding.edAuthor.text.toString()
 
         currentImageUri?.let { uri ->
-            val imageFile = com.novandi.core.utils.uriToFile(uri, this@NewBookActivity)
+            val imageFile = uriToFile(uri, this@NewBookActivity)
             val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
             val multipartBody = MultipartBody.Part.createFormData(
                 "image",
@@ -55,17 +59,17 @@ class NewBookActivity : AppCompatActivity() {
             )
 
             if (title.isEmpty() && author.isEmpty()) {
-                showToast("Masukkan nama dan author dulu")
+                showToast(resources.getString(R.string.field_empty_warning))
             } else {
                 lifecycleScope.launch {
                     viewModel.uploadImage(multipartBody)
                     viewModel.imageUpload.collect { uiState ->
                         when (uiState) {
-                            is com.novandi.core.state.UiState.Loading -> loading(true)
-                            is com.novandi.core.state.UiState.Success -> {
+                            is UiState.Loading -> loading(true)
+                            is UiState.Success -> {
                                 loading(false)
                                 if (uiState.data.success && uiState.data.data != null) {
-                                    val entity = com.novandi.core.room.BookEntity(
+                                    val entity = BookEntity(
                                         title = title,
                                         image = uiState.data.data!!.image.url,
                                         author = author
@@ -74,13 +78,13 @@ class NewBookActivity : AppCompatActivity() {
 
                                     viewModel.result.collect { uiStateResult ->
                                         when (uiStateResult) {
-                                            is com.novandi.core.state.UiState.Loading -> {}
-                                            is com.novandi.core.state.UiState.Success -> {
+                                            is UiState.Loading -> {}
+                                            is UiState.Success -> {
                                                 loading(false)
                                                 showToast(uiStateResult.data.message)
                                                 finish()
                                             }
-                                            is com.novandi.core.state.UiState.Error -> {
+                                            is UiState.Error -> {
                                                 loading(false)
                                                 showToast(uiStateResult.errorMessage)
                                             }
@@ -88,7 +92,7 @@ class NewBookActivity : AppCompatActivity() {
                                     }
                                 } else showToast(uiState.data.message.toString())
                             }
-                            is com.novandi.core.state.UiState.Error -> {
+                            is UiState.Error -> {
                                 loading(false)
                                 showToast(uiState.errorMessage)
                             }
@@ -96,7 +100,7 @@ class NewBookActivity : AppCompatActivity() {
                     }
                 }
             }
-        } ?: showToast("Pilih gambar dulu")
+        } ?: showToast(resources.getString(R.string.image_empty_warning))
     }
 
     private fun startGallery() {

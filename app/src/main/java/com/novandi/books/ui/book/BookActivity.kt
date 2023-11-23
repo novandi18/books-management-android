@@ -21,6 +21,7 @@ import com.novandi.books.R
 import com.novandi.books.databinding.ActivityBookBinding
 import dagger.hilt.android.AndroidEntryPoint
 import com.bumptech.glide.request.target.Target
+import com.novandi.books.ui.edit.EditActivity
 import com.novandi.core.adapter.OtherBookAdapter
 import com.novandi.core.room.BookEntity
 
@@ -101,6 +102,15 @@ class BookActivity : AppCompatActivity() {
                             finish()
                         }
                         .show()
+                    false
+                }
+                R.id.book_edit -> {
+                    val intent = Intent(this@BookActivity, EditActivity::class.java)
+                    val bundle = Bundle().apply {
+                        putInt(EXTRA_ID, book.id)
+                    }
+                    intent.putExtras(bundle)
+                    startActivity(intent)
                     false
                 }
                 R.id.book_favorite -> {

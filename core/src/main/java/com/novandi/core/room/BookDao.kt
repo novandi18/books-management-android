@@ -6,6 +6,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface BookDao {
@@ -32,4 +33,7 @@ interface BookDao {
 
     @Query("UPDATE book SET isFavorite = :isFavorite WHERE id = :id")
     suspend fun updateBookFavorite(isFavorite: Boolean, id: Int)
+
+    @Update
+    suspend fun updateBook(book: BookEntity)
 }
