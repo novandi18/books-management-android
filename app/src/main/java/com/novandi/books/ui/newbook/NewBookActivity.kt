@@ -64,10 +64,10 @@ class NewBookActivity : AppCompatActivity() {
                             is com.novandi.core.state.UiState.Loading -> loading(true)
                             is com.novandi.core.state.UiState.Success -> {
                                 loading(false)
-                                if (uiState.data.success) {
+                                if (uiState.data.success && uiState.data.data != null) {
                                     val entity = com.novandi.core.room.BookEntity(
                                         title = title,
-                                        image = uiState.data.data.image.url,
+                                        image = uiState.data.data!!.image.url,
                                         author = author
                                     )
                                     viewModel.insertBook(entity)
@@ -86,7 +86,7 @@ class NewBookActivity : AppCompatActivity() {
                                             }
                                         }
                                     }
-                                } else showToast("Gagal upload gambar, coba lagi")
+                                } else showToast(uiState.data.message.toString())
                             }
                             is com.novandi.core.state.UiState.Error -> {
                                 loading(false)

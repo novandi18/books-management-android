@@ -9,6 +9,7 @@ import com.novandi.core.room.BookEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import okhttp3.MultipartBody
+import java.io.IOException
 import javax.inject.Inject
 
 class BookRepositoryImpl @Inject constructor(
@@ -18,8 +19,13 @@ class BookRepositoryImpl @Inject constructor(
     override fun getBooks(): LiveData<List<BookEntity>> = bookDao.getBooks()
 
     override suspend fun uploadImage(image: MultipartBody.Part): Flow<ImgBBResponse> {
-        val upload = api.uploadImage(image = image)
-        return flowOf(upload)
+        return try {
+            val upload = api.uploadImage(image = image)
+            flowOf(ImgBBResponse(
+                data = upload.data, success = upload.success, message = "Gagal upload gambar, coba lagi"))
+        } catch (e: IOException) {
+            flowOf(ImgBBResponse(data = null, success = false, message = e.message.toString()))
+        }
     }
 
     override suspend fun insertBook(book: BookEntity): Flow<BookResponse> {

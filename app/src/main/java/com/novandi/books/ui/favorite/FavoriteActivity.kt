@@ -1,13 +1,13 @@
 package com.novandi.books.ui.favorite
 
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.novandi.books.databinding.ActivityFavoriteBinding
+import com.novandi.books.ui.book.BookActivity
 import com.novandi.core.adapter.BookAdapter
 import com.novandi.core.room.BookEntity
 import com.novandi.core.utils.GridSpacingItemDecoration
@@ -41,8 +41,7 @@ class FavoriteActivity : AppCompatActivity() {
 
             adapter.setOnItemClickListener(object : BookAdapter.OnItemClickListener {
                 override fun onItemClicked(data: BookEntity) {
-                    val uri = Uri.parse("books://main")
-                    val intent = Intent(Intent.ACTION_VIEW, uri)
+                    val intent = Intent(this@FavoriteActivity, BookActivity::class.java)
                     val bundle = Bundle()
                     bundle.putInt("extra_id", data.id)
                     intent.putExtras(bundle)

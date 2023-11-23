@@ -4,10 +4,12 @@ import com.google.gson.annotations.SerializedName
 
 data class ImgBBResponse(
     @field:SerializedName("data")
-    val data: ImgBB,
+    val data: ImgBB?,
 
     @field:SerializedName("success")
-    val success: Boolean
+    val success: Boolean,
+
+    val message: String? = null
 )
 
 data class ImgBB(
