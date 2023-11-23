@@ -55,6 +55,9 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.android.complier)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
 
 kapt {

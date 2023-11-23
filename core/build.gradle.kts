@@ -14,7 +14,7 @@ android {
     defaultConfig {
         minSdk = 21
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.novandi.core.ui.HiltTestRunner"
          consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -58,8 +58,14 @@ dependencies {
     kapt(libs.dagger.hilt.android.complier)
 
     testImplementation(libs.junit)
+    testImplementation(libs.google.truth)
+    androidTestImplementation(libs.google.truth)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.dagger.hilt.android.testing)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.arch)
+    kaptAndroidTest(libs.dagger.hilt.android.complier)
 }
 
 kapt {
