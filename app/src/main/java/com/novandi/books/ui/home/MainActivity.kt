@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         setTopAppBar()
         setSearchView()
         onBack()
+        onSwipeRefresh()
     }
 
     private fun showBooks() {
@@ -219,5 +220,15 @@ class MainActivity : AppCompatActivity() {
                 } else finish()
             }
         })
+    }
+
+    private fun onSwipeRefresh() {
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.rvBook.adapter = null
+            binding.rvBook.layoutManager = null
+            binding.rvBook.removeItemDecorationAt(0)
+            showBooks()
+            binding.swipeRefresh.isRefreshing = false
+        }
     }
 }

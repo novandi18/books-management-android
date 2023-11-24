@@ -65,4 +65,12 @@ class BookDaoTest {
         val allBooks = bookDao.getBooks().blockingObserve()
         Truth.assertThat(allBooks).isEqualTo(listOf<BookEntity>())
     }
+
+    @Test
+    fun book_must_updated_after_edit() = runTest {
+        bookDao.insertBook(DummyData.book)
+        bookDao.updateBook(DummyData.updatedBook)
+        val allBooks = bookDao.getBooks().blockingObserve()
+        Truth.assertThat(allBooks).isEqualTo(listOf(DummyData.updatedBook))
+    }
 }

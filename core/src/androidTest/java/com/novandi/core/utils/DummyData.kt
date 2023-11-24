@@ -12,4 +12,11 @@ object DummyData {
     )
 
     val search = SearchEntity(id = 1, keyword = "weeekly")
+
+    val updatedBook = BookEntity(
+        id = 1,
+        title = "Weeekly Jaehee Perform",
+        author = "Mnet Group",
+        image = "https://i.pinimg.com/originals/81/2a/c4/812ac4332a2ea6c918573293f7db50e1.jpg",
+    )
 }

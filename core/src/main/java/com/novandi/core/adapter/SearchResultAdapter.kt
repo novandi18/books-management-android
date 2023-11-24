@@ -40,6 +40,7 @@ class SearchResultAdapter : RecyclerView.Adapter<SearchResultAdapter.BookViewHol
                 ivFavorite.visibility = if (data.isFavorite) View.VISIBLE else View.GONE
 
                 Glide.with(binding.root).load(data.image)
+                    .skipMemoryCache(true)
                     .apply(RequestOptions().error(R.drawable.image_error))
                     .listener(object : RequestListener<Drawable> {
                         override fun onLoadFailed(

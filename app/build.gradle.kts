@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata)
     implementation(libs.androidx.activity)
     implementation(libs.dagger.hilt.android)
+    implementation(libs.androidx.swipe.refresh)
     kapt(libs.dagger.hilt.android.complier)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
