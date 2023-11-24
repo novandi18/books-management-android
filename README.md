@@ -11,6 +11,8 @@ Manage your books more easily.
 - Gradle Version Catalog
 - Room
 - Android Test
+- Dagger Hilt
+- Multi-Module
 
 ## Preview
 
